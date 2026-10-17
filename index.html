@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aditya Chaudhary — Portfolio</title>
+<style>
+:root{--glass:rgba(255,255,255,.42);--edge:rgba(255,255,255,.7);--bg:#eef2f5;--ink:#14202b;--mut:#4a5a68;--acc:#0f766e;--hi:#e9a23b;--card:#fff;--line:#c9d4dc}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1820;--ink:#e8eef2;--mut:#9fb0bd;--acc:#4fd1c5;--card:#16222d;--line:#2a3a47;--glass:rgba(255,255,255,.07);--edge:rgba(255,255,255,.16)}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(520px 420px at 12% 8%,rgba(15,118,110,.45),transparent 70%),radial-gradient(480px 460px at 88% 28%,rgba(233,162,59,.45),transparent 70%),radial-gradient(560px 480px at 30% 92%,rgba(79,70,229,.30),transparent 70%),var(--bg);background-attachment:fixed;color:var(--ink);font:17px/1.6 "Trebuchet MS",system-ui,sans-serif}
+main{max-width:960px;margin:0 auto;padding:0 20px 60px}
+nav{display:flex;gap:20px;padding:18px 0}
+a{color:var(--acc)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.hero{padding:60px 0 50px;border-bottom:4px solid var(--hi)}
+h1{font-size:clamp(3rem,11vw,7rem);line-height:.95;margin:0 0 20px;letter-spacing:-.03em}
+.hero p{max-width:52ch;color:var(--mut);font-size:1.15rem;margin:0}
+h2{font-size:1.6rem;margin:56px 0 18px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{background:none;border:1px solid var(--line);color:var(--ink);padding:6px 16px;border-radius:99px;cursor:pointer;font:inherit}
+.filters button[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}
+.card h3{margin:0 0 8px}.card p{margin:0 0 12px;color:var(--mut)}
+.tags span{display:inline-block;font-size:.85rem;border:1px solid var(--line);border-radius:6px;padding:1px 8px;margin:0 6px 6px 0}
+.skills{display:flex;flex-wrap:wrap;gap:10px;padding:0;list-style:none}
+.skills li{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:6px}
+form{display:grid;gap:12px;max-width:520px}
+label{display:grid;gap:4px;font-weight:bold}
+input,textarea{font:inherit;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+form button{justify-self:start;background:var(--acc);color:#fff;border:0;padding:10px 22px;border-radius:6px;font:inherit;cursor:pointer}
+#status{min-height:1.6em}
+
+.card,.skills li,form,.filters button,nav{background:var(--glass);border:1px solid var(--edge);-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);box-shadow:0 8px 28px rgba(20,32,43,.12),inset 0 1px 0 rgba(255,255,255,.35)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.card,.skills li,form,.filters button,nav{background:var(--card)}}
+nav{position:sticky;top:12px;z-index:5;margin-top:12px;padding:12px 20px;border-radius:99px;flex-wrap:wrap}
+.filters button[aria-pressed=true]{background:var(--acc);border-color:var(--acc)}
+form{padding:22px;border-radius:14px;max-width:560px}
+.card{border-radius:14px}
+input,textarea{background:rgba(255,255,255,.35);border-color:var(--edge)}
+@media(prefers-color-scheme:dark){input,textarea{background:rgba(255,255,255,.06)}}
+.card h3 small{display:block;font-weight:normal;color:var(--mut);font-size:.85rem}
+.card ul{margin:0 0 12px;padding-left:18px;color:var(--mut)}
+.about{max-width:62ch}
+</style>
+</head>
+<body>
+<main>
+<nav><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a></nav>
+<header class="hero">
+<h1>Aditya Chaudhary</h1>
+<p>Motivated B.Tech Computer Science Engineering student specializing in Full Stack Development and DevOps. Experienced in building web and mobile applications, REST APIs, database-backed systems, expense and task tracking solutions, and real-time communication features. Seeking an opportunity to apply practical development skills, solve real-world problems, and grow as a software developer.</p>
+<p style="margin-top:14px"><a href="https://github.com/Ipardhang">GitHub: github.com/Ipardhang</a></p>
+</header>
+
+<section id="about">
+<h2>About me</h2>
+<div class="grid">
+<article class="card"><h3>Soft skills</h3><ul><li>Problem solving</li><li>Communication</li><li>Teamwork</li><li>Leadership</li><li>Adaptability</li><li>Quick learner</li></ul></article>
+<article class="card"><h3>Languages</h3><ul><li>English</li><li>Hindi</li></ul></article>
+<article class="card"><h3>Interests</h3><ul><li>Travelling</li><li>Watching movies</li><li>Learning new technologies</li></ul></article>
+</div>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+<div class="grid" id="grid" aria-live="polite">Loading projects…</div>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<div class="grid">
+<article class="card"><h3>Languages</h3><div class="tags"><span>C++</span><span>Java</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>SQL</span></div></article>
+<article class="card"><h3>Frameworks &amp; development</h3><div class="tags"><span>Spring Boot</span><span>React</span><span>Flutter</span><span>Next.js</span><span>REST APIs</span><span>WebSocket</span></div></article>
+<article class="card"><h3>Databases</h3><div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span></div></article>
+<article class="card"><h3>Tools &amp; concepts</h3><div class="tags"><span>Git</span><span>GitHub</span><span>Maven</span><span>DevOps fundamentals</span><span>DSA</span><span>DBMS</span><span>Linux</span></div></article>
+</div>
+</section>
+
+<section id="education">
+<h2>Education &amp; certifications</h2>
+<div class="grid">
+<article class="card"><h3>B.Tech, Computer Science Engineering<small>DIT University, Dehradun. Expected graduation 2027</small></h3><p>Specializing in full-stack development and DevOps.</p></article>
+<article class="card"><h3>School<small>CBSE</small></h3><ul><li>Class XII: 70%</li><li>Class X: 89.4%</li></ul></article>
+<article class="card"><h3>Certifications</h3><p>Google AI Essentials, Google (Coursera), July 2025<br>Database Management Essentials, University of Colorado System (Coursera), March 2025<br>Introduction to Java, LearnQuest (Coursera), March 2025<br>Linux Fundamentals, LearnQuest (Coursera), February 2025</p></article>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact me</h2>
+<p>Based in Roorkee, Uttarakhand. Email: <a href="mailto:04adityachaudhary@gmail.com">04adityachaudhary@gmail.com</a> · GitHub: <a href="https://github.com/Ipardhang">Ipardhang</a>, or use the form.</p>
+<form id="form">
+<label>Name<input name="name" required></label>
+<label>Email<input name="email" type="email" required></label>
+<label>Message<textarea name="message" rows="4" required></textarea></label>
+<button type="submit">Send message</button>
+<div id="status" role="status"></div>
+</form>
+</section>
+</main>
+<script>
+const grid=document.getElementById('grid'),filters=document.getElementById('filters');
+let projects=[],active='All';
+const FALLBACK=[{"title": "Nexus Remote — Remote Control Application", "category": "Mobile", "tech": ["Flutter", "Java", "Spring Boot", "PostgreSQL", "WebSocket"], "description": "Mobile-to-computer remote-control application with a Flutter mobile client and Spring Boot backend.", "highlights": ["Device pairing, REST APIs, real-time WebSocket communication, client registration, mouse movement and remote command handling.", "PostgreSQL for device and pairing data; tested on iPhone with a LAN-based backend."], "order": 1}, {"title": "Task Management System", "category": "Full-Stack", "tech": ["React", "Spring Boot", "PostgreSQL", "REST API"], "description": "Full-stack task management application with authentication, task creation, status, priority, due dates and user-specific task data.", "highlights": ["REST APIs in Spring Boot, connected to the React frontend through Axios with token-based request handling.", "PostgreSQL persistence, prepared for cloud deployment."], "order": 2}, {"title": "Expense Tracker", "category": "Python", "tech": ["Python"], "description": "Expense tracking application to record, organize and manage personal expense information.", "highlights": ["Data entry and tracking workflows that make spending records easier to maintain and review.", "Designed as a practical application for managing day-to-day financial records."], "order": 3}, {"title": "Fitness Tracker", "category": "Web", "tech": ["Next.js", "TypeScript"], "description": "Fitness-tracking web application built with Next.js and TypeScript and a structured modern frontend.", "highlights": ["Reusable components and pages supporting fitness-related tracking workflows.", "Maintained with Git/GitHub and deployed on Vercel."], "order": 4}, {"title": "CourseSys — Course Registration System", "category": "Web", "tech": ["Web Development", "Authentication", "Database"], "description": "Course registration application supporting student authentication, course enrollment and course management.", "highlights": ["Workflows for students and course data, focused on usability and efficient record management."], "order": 5}, {"title": "Student Management System", "category": "Application", "tech": ["Application Development", "Database"], "description": "Application to manage student records, attendance and academic information efficiently.", "highlights": ["Structured data management workflows for maintaining student information."], "order": 6}, {"title": "Hotel Management System", "category": "C++", "tech": ["C++"], "description": "C++ application for hotel bookings, customer records, room allocation and billing.", "highlights": ["Menu-driven workflows that simplify common hotel management operations."], "order": 7}, {"title": "Calculator", "category": "Web", "tech": ["HTML", "CSS", "JavaScript"], "description": "Responsive calculator interface, deployed through Vercel.", "highlights": [], "order": 8}, {"title": "Music Player", "category": "Web", "tech": ["HTML", "CSS", "JavaScript"], "description": "Browser-based music player projects demonstrating frontend UI and JavaScript interaction.", "highlights": [], "order": 9}, {"title": "Banking Management System", "category": "Application", "tech": ["Database"], "description": "Banking management project focused on handling banking-related records and operations.", "highlights": [], "order": 10}];
+
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function render(){
+  const list=projects.filter(p=>active==='All'||p.category===active);
+  grid.innerHTML=list.length?list.map(p=>`<article class="card"><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>${(p.highlights||[]).length?`<ul>${p.highlights.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="tags">${(p.tech||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div>${p.link?`<a href="${esc(p.link)}">View project</a>`:''}</article>`).join(''):'No projects in this category yet.';
+}
+function renderFilters(){
+  const cats=['All',...new Set(projects.map(p=>p.category).filter(Boolean))];
+  filters.innerHTML=cats.map(c=>`<button aria-pressed="${c===active}" data-c="${esc(c)}">${esc(c)}</button>`).join('');
+}
+filters.addEventListener('click',e=>{const c=e.target.dataset.c;if(!c)return;active=c;renderFilters();render();});
+fetch('/api/projects').then(r=>r.json()).then(d=>{projects=d;renderFilters();render();})
+  .catch(()=>{projects=FALLBACK;renderFilters();render();});
+document.getElementById('form').addEventListener('submit',async e=>{
+  e.preventDefault();const st=document.getElementById('status');st.textContent='Sending…';
+  try{
+    const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.error);
+    st.textContent='Message sent. I will reply by email.';e.target.reset();
+  }catch(err){st.textContent=err.message||'Message not sent. Try again.';}
+});
+</script>
+</body>
+</html>
