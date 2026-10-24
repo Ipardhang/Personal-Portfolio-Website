@@ -22,7 +22,8 @@ const contactRateLimit = (req, res, next) => {
 };
 
 app.use(express.json({ limit: '50kb' }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
+app.get('/', (_req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 const Project = mongoose.model('Project', new mongoose.Schema({
   title: { type: String, required: true },
