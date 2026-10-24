@@ -4,7 +4,24 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const app = express();
-app.use(express.json());
+
+const contactBuckets = new Map();
+const contactRateLimit = (req, res, next) => {
+  const key = req.ip || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const bucket = contactBuckets.get(key);
+  if (!bucket || now - bucket.startedAt >= 15 * 60 * 1000) {
+    contactBuckets.set(key, { startedAt: now, count: 1 });
+    return next();
+  }
+  if (bucket.count >= 5) {
+    return res.status(429).json({ error: 'Too many messages. Please try again later.' });
+  }
+  bucket.count += 1;
+  next();
+};
+
+app.use(express.json({ limit: '50kb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const Project = mongoose.model('Project', new mongoose.Schema({
@@ -177,9 +194,12 @@ app.post('/api/projects', async (req, res) => {
   } catch { res.status(500).json({ error: 'Could not add the project.' }); }
 });
 
-app.post('/api/contact', async (req, res) => {
-  const { name, email, message } = req.body || {};
-  if (!name || !email || !message) return res.status(400).json({ error: 'Name, email and message are required.' });
+app.post('/api/contact', contactRateLimit, async (req, res) => {
+  const name = String(req.body?.name || '').trim();
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  const message = String(req.body?.message || '').trim();
+  if (name.length < 2 || name.length > 100 || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) || message.length < 5 || message.length > 5000)
+    return res.status(400).json({ error: 'Please provide a valid name, email and message.' });
   try { await Message.create({ name, email, message }); res.status(201).json({ ok: true }); }
   catch { res.status(500).json({ error: 'Could not send your message.' }); }
 });
